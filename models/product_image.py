@@ -1,5 +1,5 @@
 """a model of an image of a product"""
-from base import Base
+from .base import Base
 
 
 class ProductImage(Base):
@@ -24,3 +24,7 @@ class ProductImage(Base):
     def product(self):
         """returns the product for the image"""
         pass
+
+    #def __delete__(self):
+    #   """delete the image from the file system"""
+    #  pass

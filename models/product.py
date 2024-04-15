@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """Model of product being sold hwihc is a cloth"""
-from base import Base
+from .base import Base
 
 
 class Product(Base):
@@ -16,5 +16,15 @@ class Product(Base):
 
     def images(self):
         """returns a list of ProductImage objects related to this object"""
-        pass
+        from storage.engine import storage_engine
+        from .product_image import ProductImage
+        return [image 
+                for image in storage_engine.get_all(ProductImage)
+                if image.product_id == self.id]
 
+    #def __delete__(self):
+    #    """it finds associated objects (by_id) and execute delete on them"""
+    #    pass
+
+    def related_objects(self):
+        return self.images()

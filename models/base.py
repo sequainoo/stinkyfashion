@@ -6,7 +6,7 @@ import uuid
 class Base:
     id = ""
 
-    def __init__(self, **kwarg):
+    def __init__(self, **kwargs):
         """initializes instances of it"""
         if 'id' not in kwargs:
            self.id = str(uuid.uuid4())
@@ -25,3 +25,6 @@ class Base:
         dict_.update(self.__dict__)
         #dict_["__class__"] = self.__class__.__name__
         return dict_
+
+    def related_objects(self):
+        return None
