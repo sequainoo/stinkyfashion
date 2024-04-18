@@ -32,6 +32,7 @@
         </nav>
     </header>
 
+    {% if product %}
     <main class="product-container">
         <div class="product-images">
             <div class="main-image">
@@ -67,6 +68,7 @@
             <a class="button" href="{{ url_for('contact_details') }}">Contact Us</a>
         </div>
     </main>
+    {% endif %}
 
     <footer>
         <p>&copy; 2024 Stinky Tailor</p>

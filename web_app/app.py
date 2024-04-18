@@ -42,6 +42,8 @@ def womens_products():
 def product(product_id):
     """Returns a page for this product of this specific id"""
     product = storage.get(Product, product_id)
+    if not product:
+        redirect(url_for('home'))
     return render_template("product.html", product=product)
 
 @app.post("/order")
