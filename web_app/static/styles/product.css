@@ -45,16 +45,22 @@ nav a:hover {
 }
 
 .product-container {
+    /* width: 100%; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     margin-top: 20px;
+
+    /* if flex direction is column */
+    /* flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; */
 }
 
 .product-images {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 1 0 50%;
+    max-width: 100%;
 }
 
 .main-image img {
@@ -79,8 +85,8 @@ nav a:hover {
 }
 
 .product-details {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 1 0 40%;
+    max-width: 100%;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
