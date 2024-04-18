@@ -37,7 +37,7 @@
           <img src="{% if product.images() %}{{ product.images()[0].url() }}{% endif %}" alt="{{ product.description }}">
           <h3 class="title">{{ product.title }}</h3>
           <p class="price">¢{{ product.price }}</p>
-          <a class="button" href="{{ url_for('product', product_id=product.id) }}">order</a>
+          <a class="button" href="{{ url_for('product', product_id=product.id) }}">Check it out</a>
         </div>
         {% endfor %}
       </div>
