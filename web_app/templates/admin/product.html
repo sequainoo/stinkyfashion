@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="/static/styles/product.css">
+    <link rel="stylesheet" href="/static/styles/main.css"> <!-- Include shared styles -->
+</head>
+<body>
+  <style>
+
+    .forms {
+      width: 100%;
+      margin-top: 30px;
+    }
+    form {
+      width: 300px;
+      padding: 15px;
+      border: 1px solid grey;
+      border-radius: 5px;
+    }
+  
+    input {
+      width: 100%;
+      margin-top: 10px;
+    }
+    hr {
+      border: 1px solid grey;
+      border-bottom: 0px;
+    }
+    .delete-button {
+      background-color: red;
+      color: white;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    .image-delete-button {
+      width: 50px;
+      font-size: 10px;
+    }
+  </style>
+    <header>
+        <h1>Admin</h1>
+        <nav>
+            <ul>
+              <li><a href="/admin">Home</a></li>
+              <li><a href="{{ url_for('product_creation_form') }}">Add Product</a></li>
+              <li><a href="{{ url_for('admin_products') }}">Products</a></li>
+              <li><a href="{{ url_for('admin_contact_detail_form') }}">Contact Details</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-container">
+        <div class="product-images">
+            <div class="main-image">
+              {% if images %}
+                <img src="{{ images[0].url() }}" alt="Main Product Image">
+              {% endif %}
+            </div>
+            <div class="thumbnail-images">
+                {% for image in images %}
+                <img src="{{ image.url() }}" alt="Thumbnail Image 1">
+                {% endfor %}
+            </div>
+            {% for index in range(0, number_of_images) %}
+            <a class="button delete-button image-delete-button" href="{{ url_for('admin_delete_image', image_id=images[index].id) }}">Delete Image {{ index + 1 }}</a>
+            {% endfor %}
+        </div>
+        <div class="product-details">
+            <h2>{{ product.title }}</h2>
+            <p class="product-price">¢{{ product.price }}</p>
+            <p class="product-description">{{ product.description }}</p>
+            <p class="product-sex">Sex: {{ product.sex }}</p>
+            <p class="featured">Feature: {{ product.feature }}</p>
+            <hr>
+            <a class="button delete-button" href="{{ url_for('admin_delete_product', product_id=product.id)}}">Delete Product</a>
+
+            <!-- forms to edit the product -->
+            <div class="forms">
+              <!-- Product Image uploaad form -->
+              <form action="{{ url_for('upload_product_image', product_id=product.id) }}" enctype="multipart/form-data" method="POST">
+                <h2>Upload Image for Product</h2>
+                <hr>
+                <input type="file" name="product_image">
+                <hr>
+                <input type="submit" value="Upload">
+              </form>
+  
+              <!-- product update form comes here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Stinky Tailor</p>
+    </footer>
+    <script src="/static/scripts/product.js"></script>
+
+</body>
+</html>

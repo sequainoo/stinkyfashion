@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Clothing Store</title>
+    <!-- Link to your CSS stylesheet -->
+    <link rel="stylesheet" href="/static/styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <ul>
+                <li><a href="/admin">Home</a></li>
+                <li><a href="{{ url_for('product_creation_form') }}">Add Product</a></li>
+                <li><a href="{{ url_for('admin_products') }}">Products</a></li>
+                <li><a href="{{ url_for('admin_contact_detail_form') }}">Contact Details</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <!-- <h2>Featured Items</h2>
+            {% for product in products%}
+            <div class="product">
+                <img src="{{ product.images()[0].url() }}" alt="Product 1">
+                <h3>{{ product.title }}</h3>
+                <p>${{product.price }}</p>
+                <a class="button" href="{{ url_for('product', product_id=product.id) }}">order</a>
+            </div>
+            {% endfor %} -->
+            <!-- Add more product divs as needed -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Stinky Tailor</p>
+    </footer>
+
+    <!-- Optional JavaScript (not needed for this example) -->
+    <!-- You can link your JavaScript file here -->
+    <!-- <script src="scripts/main.js"></script> -->
+
+</body>
+</html>

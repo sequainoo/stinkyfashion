@@ -28,3 +28,6 @@ class Base:
 
     def related_objects(self):
         return None
+    
+    def delete(self):
+        del self

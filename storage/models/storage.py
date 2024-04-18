@@ -4,6 +4,8 @@ import json
 
 from models.product import Product
 from models.product_image import ProductImage
+from models.order import Order
+from models.contact_detail import ContactDetail
 
 
 class Storage:
@@ -13,11 +15,15 @@ class Storage:
 
     # stores instaces of classes of the system
     _STORE = {Product: [],
-              ProductImage: []}
+              ProductImage: [],
+              Order: [],
+              ContactDetail: []}
 
     # associates class names to respective classes
     _CLASS_NAMES_AND_CLASSES ={Product.__name__: Product,
-                               ProductImage.__name__: ProductImage}
+                               ProductImage.__name__: ProductImage,
+                               Order.__name__: Order,
+                               ContactDetail.__name__: ContactDetail}
     _DB_FILE = "./db.json"
 
 
@@ -104,7 +110,7 @@ class Storage:
         if related_objs:
             for related_obj in related_objs:
                 self.remove(related_obj)
-        del obj
+        obj.delete()
         #self._persist_to_db()
 
     def save(self):

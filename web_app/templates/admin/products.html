@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Clothing</title>
+    <!-- Link to mens.css for page-specific styles -->
+    <link rel="stylesheet" href="/static/styles/mens.css">
+    <!-- Link to shared main.css for global styles -->
+    <link rel="stylesheet" href="/static/styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Admin</h1>
+        <nav>
+            <ul>
+              <li><a href="/admin">Home</a></li>
+              <li><a href="{{ url_for('product_creation_form') }}">Add Product</a></li>
+              <li><a href="{{ url_for('admin_products') }}">Products</a></li>
+              <li><a href="{{ url_for('admin_contact_detail_form') }}">Contact Details</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <main>
+    <section>
+      <h2>List of all products</h2>
+      <!-- Add your men's clothing products here -->
+      <div class="products">
+        {% for product in products %}
+        <div class="product">
+          <img src="{% if product.images() %}{{ product.images()[0].url() }}{% endif %}" alt="{{ product.description }}">
+          <h3 class="description">{{ product.description }}</h3>
+          <p class="price">¢{{ product.price }}</p>
+          <a class="button" href="{{ url_for('admin_product', product_id=product.id) }}">Detail</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+    <footer>
+        <p>&copy; 2024 Stinky Tailor</p>
+    </footer>
+
+    <!-- Optional JavaScript (not needed for this example) -->
+    <!-- <script src="scripts/main.js"></script> -->
+
+</body>
+</html>

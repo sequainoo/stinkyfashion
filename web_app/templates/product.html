@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="/static/styles/product.css">
+    <link rel="stylesheet" href="/static/styles/main.css"> <!-- Include shared styles -->
+</head>
+<body>
+    <style>
+        .order-instruction {
+            font-size: small;
+            list-style-type: circle;
+            margin: 15px;
+        }
+        hr {
+            border: 1px solid grey;
+            border-bottom: 0px;
+        }
+    </style>
+    <header>
+        <h1>Welcome to Stinky Fashion</h1>
+        <nav>
+            <ul>
+              <li><a href="/">Home</a></li>
+                <li><a href="{{ url_for('all_products') }}">All Collection</a></li>
+                <li><a href="{{ url_for('mens_products') }}">Men's Clothing</a></li>
+              <li><a href="{{ url_for('womens_products') }}">Women's Clothing</a></li>
+              <li><a href="{{ url_for('contact_details') }}">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-container">
+        <div class="product-images">
+            <div class="main-image">
+                <img src="{{ product.images()[0].url() }}" alt="Main Product Image">
+            </div>
+            <div class="thumbnail-images">
+                {% for image in product.images() %}
+                <img src="{{ image.url() }}" alt="Thumbnail Image 1">
+                {% endfor %}
+            </div>
+        </div>
+        <div class="product-details">
+            <h2>{{ product.title }}</h2>
+            <p class="product-description">{{ product.description }} <br>
+              <span class="product-sex">
+                <strong>
+                {% if product.is_male() %}Male{% elif product.is_female() %}Female{% else %}Unisex{% endif %}
+                </strong>
+              </span>
+            </p>
+            <hr>
+            <p class="product-price"><strong>Price:</strong> <span>¢{{ product.price }}</span></p>
+
+            <!-- instruction about how to order -->
+            <ul class="order-instruction">
+                <li>If interested.</li>
+                <li>Click on the 'Contact Us' button below.</li>
+                <li>Get information about us and reach out with your specification.</li>
+                <li>We deliver Every where within Ghana.</li>
+                <li>Payment is by MoMo.</li>
+                <li>Payment Plan will be individually discussed.</li>
+            </ul>
+            <a class="button" href="{{ url_for('contact_details') }}">Contact Us</a>
+
+            <!-- add a form that collects customer name and number to order-->
+            <!-- /order method=post: creates an order and links customer n product-->
+            <!-- <form method="POST" action="/order"> -->
+              <!-- <input name="product_id" value="{{ product.id }}" hidden> -->
+              
+              <!-- <label>Customer Name:</label> -->
+              <!-- <input name="customer_name"> -->
+        
+              <!-- <label>Phone:</label> -->
+              <!-- <input name="phone" > -->
+        
+              <!-- <button>Add to Cart</button> -->
+              <!-- <input type="submit"> -->
+            <!-- </form> -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Stinky Tailor</p>
+    </footer>
+    <script src="/static/scripts/product.js"></script>
+</body>
+</html>

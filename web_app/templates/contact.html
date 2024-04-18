@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <!-- Link to contact.css for page-specific styles -->
+    <link rel="stylesheet" href="/static/styles/contact.css">
+    <!-- Link to shared main.css for global styles -->
+    <link rel="stylesheet" href="/static/styles/main.css">
+</head>
+<body>
+    <style>
+        section {
+            margin-bottom: 15px;
+        }
+    </style>
+    <header>
+        <h1>Welcome to Stinky Fashion</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{{ url_for('all_products') }}">All Collection</a></li>
+                <li><a href="{{ url_for('mens_products') }}">Men's Clothing</a></li>
+                <li><a href="{{ url_for('womens_products') }}">Women's Clothing</a></li>
+                <li><a href="{{ url_for('contact_details') }}">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Get in Touch</h2>
+            <p>If you have any questions or inquiries, feel free to reach out to us:</p>
+            <!-- <p>Email: info@example.com</p>
+            <p>Phone: +1-123-456-7890</p>
+            <p>Address: 123 Clothing Street, City, Country</p> -->
+            {% for contact_detail in contact_details %}
+            <p>{{ contact_detail.name }}: {{ contact_detail.value }}</p>
+            {% endfor %}
+        </section>
+        <section>
+            <h2>On Social Platforms</h2>
+            {% for contact_detail in social_handles %}
+            <p>{{ contact_detail.name }}: <a href="{{ contact_detail.link }}">{{ contact_detail.value }}</a></p>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Stinky Tailor</p>
+    </footer>
+
+
+</body>
+</html>

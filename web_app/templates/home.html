@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Clothing Store</title>
+    <!-- Link to your CSS stylesheet -->
+    <link rel="stylesheet" href="/static/styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Stinky Fashion</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{{ url_for('all_products') }}">All Collection</a></li>
+                <li><a href="{{ url_for('mens_products') }}">Men's Clothing</a></li>
+                <li><a href="{{ url_for('womens_products') }}">Women's Clothing</a></li>
+                <li><a href="{{ url_for('contact_details') }}">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Featured Items</h2>
+            {% for product in products%}
+            <div class="product">
+                <img src="{{ product.images()[0].url() }}" alt="Product 1">
+                <h3>{{ product.title }}</h3>
+                <p>{{product.description }}</p>
+                <!-- <p>¢{{product.price }}</p> -->
+                <a class="button" href="{{ url_for('product', product_id=product.id) }}">order Now</a>
+            </div>
+            {% endfor %}
+            <!-- Add more product divs as needed -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Stinky Tailor</p>
+    </footer>
+
+    <!-- Optional JavaScript (not needed for this example) -->
+    <!-- You can link your JavaScript file here -->
+    <!-- <script src="scripts/main.js"></script> -->
+
+</body>
+</html>

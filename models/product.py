@@ -4,9 +4,11 @@ from .base import Base
 
 
 class Product(Base):
-    name = ""
+    title = ""
     description = ""
     price = 0.0
+    sex = ""
+    feature = False
     #images_ids = [] # a list of ids of image objects
 
     def __init__(self, **kwargs):
@@ -28,3 +30,18 @@ class Product(Base):
 
     def related_objects(self):
         return self.images()
+
+    def is_male(self):
+        return self.sex.upper() == 'M' or self.sex.upper() == "MALE"
+    
+    def is_female(self):
+        return self.sex.upper() == 'F' or self.sex.upper() == "FEMALE"
+    
+    def is_unisex(self):
+        """tells if its unisex"""
+        return self.sex.upper() == 'U' or self.sex.upper() == "UNISEX"
+    
+    def should_be_featured(self):
+        """tells if a product should be featured"""
+        return self.feature
+        

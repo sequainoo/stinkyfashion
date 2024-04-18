@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Clothing</title>
+    <!-- Link to mens.css for page-specific styles -->
+    <link rel="stylesheet" href="/static/styles/mens.css">
+    <!-- Link to shared main.css for global styles -->
+    <link rel="stylesheet" href="/static/styles/main.css">
+</head>
+<body>
+    <style>
+        .block {
+          display: block;
+        }
+        .fit-to-width {
+          width: 100%
+        }
+        form {
+          width: 300px;
+          padding: 15px;
+          border: 1px solid;
+          border-radius: 5px;
+        }
+      
+        button {
+          width: 100%;
+        }
+    </style>
+    <header>
+        <h1>Admin</h1>
+        <nav>
+            <ul>
+              <li><a href="/admin">Home</a></li>
+              <li><a href="{{ url_for('product_creation_form') }}">Add Product</a></li>
+              <li><a href="{{ url_for('admin_products') }}">Products</a></li>
+              <li><a href="{{ url_for('admin_contact_detail_form') }}">Contact Details</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <main>
+    <section>
+      <!-- <h2>Explore Our {% if gender == 'm' %} M{% else %}Wom{% endif %}en's Collection</h2> -->
+      <form action="{{ action }}" method="POST">
+        <!-- if product variable is given it means -->
+        <!-- form is for an update of am exting product -->
+        {% if product %}
+        <h2>Update Product</h2> 
+        <input name="product_id" value="{{ product.id }}" hidden>
+        {% else %}
+        <h2>Add Product</h2>
+        {% endif %}
+        <hr>
+        <label>Title:</label>
+        <input class="block fit-to-width" name="title">
+      
+        <label>Price:</label>
+        <input class="block fit-to-width" name="price">
+      
+        <label>Description:</label>
+        <!-- <input class="block" name="description"> -->
+        <textarea class="block fit-to-width" name="description" id="" cols="30" rows="10"></textarea>
+        <hr>
+      
+        <p>Sex:</p>
+        <input type="radio" name="sex" id="" value="M"><label>Male:</label>
+        <input type="radio" name="sex" id="" value="F"><label>Female:</label>
+        <input type="radio" name="sex" id="" value="U" checked><label>Unisex:</label>
+        <hr>
+        <p>Feature this product:</p>
+        <input type="radio" name="feature" value="yes"><label>Yes:</label>
+        <input type="radio" name="feature" value="no" checked><label>No:</label>
+      
+        <button class="block">Add</button>
+      </form>
+    </section>
+  </main>
+
+    <footer>
+        <p>&copy; 2024 Stinky Tailor</p>
+    </footer>
+
+    <!-- Optional JavaScript (not needed for this example) -->
+    <!-- <script src="scripts/main.js"></script> -->
+
+</body>
+</html>

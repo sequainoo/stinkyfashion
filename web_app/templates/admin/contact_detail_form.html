@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Clothing</title>
+    <!-- Link to mens.css for page-specific styles -->
+    <link rel="stylesheet" href="/static/styles/mens.css">
+    <!-- Link to shared main.css for global styles -->
+    <link rel="stylesheet" href="/static/styles/main.css">
+</head>
+<body>
+    <style>
+        .block {
+          display: block;
+        }
+        .fit-to-width {
+          width: 100%
+        }
+        form {
+          width: 300px;
+          padding: 15px;
+          border: 1px solid;
+          border-radius: 5px;
+        }
+      
+        button {
+          width: 100%;
+        }
+        label span {
+          font-size: small;
+        }
+        .contact-detail {
+          margin-bottom: 15px;
+        }
+        hr {
+          border-bottom: none;
+        }
+        input:focus {
+          outline: none;
+        }
+    </style>
+    <header>
+        <h1>Admin</h1>
+        <nav>
+            <ul>
+              <li><a href="/admin">Home</a></li>
+              <li><a href="{{ url_for('product_creation_form') }}">Add Product</a></li>
+              <li><a href="{{ url_for('admin_products') }}">Products</a></li>
+              <li><a href="{{ url_for('admin_contact_detail_form') }}">Contact Details</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <main>
+    {% if contact_details %}
+    <ul class="contact-details">
+      {% for contact_detail in contact_details %}
+      <li><a class="button delete-button" href="{{ url_for('admin_contact_detail_delete', contact_detail_id=contact_detail.id) }}">Delete</a><strong>{{ contact_detail.name }}:</strong> {{ contact_detail.value }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <section>
+      <form action="{{ url_for('admin_create_contact_detail') }}" method="POST">
+        <h2>Add Contact Detail</h2>
+        <hr>
+        <label>Name - <span>eg. Email</span>:</label>
+        <input class="block fit-to-width" name="name">
+ 
+        <label>Value - <span>eg. ifs@gmail.com</span>:</label>
+        <input class="block fit-to-width" name="value">
+        <hr>
+        <label for="">Is social handle?</label>
+        <input type="radio" name="is_social_handle" value="yes" id=""><label>Yes</label>
+        <input type="radio" name="is_social_handle" value="no" id="" checked><label>No</label>
+        <hr>
+        <label for="">Link to social platform</label>
+        <input class="block fit-to-width link" type="text" name="link" style="border: none;">
+        <hr>
+        <button class="block">Add</button>
+      </form>
+    </section>
+  </main>
+
+    <footer>
+        <p>&copy; 2024 Stinky Tailor</p>
+    </footer>
+
+    <!-- Optional JavaScript (not needed for this example) -->
+    <!-- <script src="scripts/main.js"></script> -->
+
+</body>
+</html>
