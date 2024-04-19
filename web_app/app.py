@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """contains our flask application object"""
+import random
+
 from flask import (Flask, render_template, url_for,
         request, redirect)
 from werkzeug.utils import secure_filename
@@ -16,6 +18,7 @@ app = Flask(__name__)
 def home():
     products = [product for product in storage.get_all(Product)
                 if product.should_be_featured()]
+    random.shuffle(products)
     return render_template("home.html", products=products, gender=None)
 
 @app.route("/products/")
