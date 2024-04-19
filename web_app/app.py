@@ -25,6 +25,7 @@ def home():
 def all_products():
     """return all products"""
     products = [product for product in storage.get_all(Product)]
+    random.shuffle(products)
     return render_template('products.html', products=products)
 
 @app.route("/products/men")
@@ -32,6 +33,7 @@ def mens_products():
     """return all men products"""
     mens_products = [product for product in storage.get_all(Product)
                      if product.is_male()]
+    random.shuffle(mens_products)
     return render_template('products.html', products=mens_products, gender="m")
 
 @app.route("/products/women")
@@ -39,6 +41,7 @@ def womens_products():
     """return all women products"""
     womens_products = [product for product in storage.get_all(Product)
                      if not product.is_male()]
+    random.shuffle(womens_products)
     return render_template('products.html', products=womens_products,  gender="f")
 
 @app.route("/product/<product_id>")
